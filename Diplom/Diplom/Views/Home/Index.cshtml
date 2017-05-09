@@ -8,11 +8,29 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Главная страница всея диплома</title>
 </head>
 <body>
     <div> 
-        <h4>Index page</h4>
+        <table>
+            <tr>
+                <td><p>Id</p></td>
+                <td><p>Группа</p></td>
+                <td><p>Телефон</p></td>
+                <td><p>Лектор</p></td>
+                <td></td>
+            </tr>
+            @foreach(var b in ViewBag.Clients)
+            {
+                <tr>
+                    <td><p>@b.Id</p></td>
+                    <td><p>@b.Group</p></td>
+                    <td><p>@b.PhoneId</p></td>
+                    <td><p>@b.IsProf</p></td>
+                </tr>
+            }
+        </table>
+
     </div>
 </body>
 </html>

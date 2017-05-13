@@ -13,6 +13,6 @@ namespace Diplom.Models
         public string group { get; set; }
         public string prof { get; set; }
         public string room { get; set; }
-        public string comment { get; set; }
+        public List<Comment> comm { get; set; }
     }
 }

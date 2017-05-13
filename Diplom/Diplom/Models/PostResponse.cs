@@ -9,7 +9,7 @@ namespace Diplom.Models
 {
     public class PostResponse
     {
-        public static List<FormattedSchedule> GetSchedule(IEnumerable<Schedule> schedule, string group, string StartDate, string EndDate)
+        public static List<FormattedSchedule> GetSchedule(MyContext db, string group, string StartDate, string EndDate)
         {
             List<FormattedSchedule> result = new List<FormattedSchedule>();
 
@@ -29,14 +29,25 @@ namespace Diplom.Models
             day = Convert.ToInt32(dd); month = Convert.ToInt32(mm); year = Convert.ToInt32(yyyy);
             DateTime EndDateD = new DateTime(year, month, day);
 
-            foreach(Schedule s in schedule)
+            List<Comment> coml;
+            foreach(Schedule s in db.Schedule)
             {
+                coml = new List<Comment>();
                 if((s.group == group) && (s.time >= StartDateD && s.time <= EndDateD))
                 {
                     string ntime = s.time.ToString();
                     ntime = ntime.Replace('.', '-');
-                    ntime = ntime.Replace(':', '-');
+                    ntime = ntime.Replace('/', '-');
                     ntime = ntime.Substring(0, ntime.Length - 3);
+
+                    foreach(Comment c in db.Comments)
+                    {
+                        if(c.LessonId == s.id)
+                        {
+                            coml.Add(c);
+                        }
+                    }
+
                     FormattedSchedule sch = new FormattedSchedule
                     {
                         id = s.id,
@@ -45,12 +56,91 @@ namespace Diplom.Models
                         group = s.group,
                         prof = s.prof,
                         room = s.room,
-                        comment = s.comment
+                        comm = coml
                     };
                     result.Add(sch);
                 }
             }
             return result;
+        }
+        public static string Check(IEnumerable<ProfEmails> profs, string email, string pswrd) // возвращает true если логин пароль верный и такой преподаватель зарегестрирован
+        {//TODO MyContext db in arguments
+            foreach(ProfEmails prof in profs)
+            {
+                if(prof.ProfEmail == email && prof.Password == pswrd)
+                    return "true";
+            }
+            return "false";
+        }
+        public static IEnumerable<string> Register(MyContext db, string who, params string[] args) // для преподавателя - string “Prof” string “Email” string “Password” string “Id”
+        {
+            List<string> response = new List<string>
+            {
+                "0 Wrong 'who' argument. Meant to be 'Student' or 'Prof'"
+            };
+            if(who == "Prof") //вернуть 3 типа информации – Успешно, Нет преподавателя с таким мэйлом, аккаунт занят 
+            {                       
+
+                int id = 1;
+                bool noPass = false;
+                bool exist = false;
+                foreach(ProfEmails email in db.Profs)
+                {
+                    if(args[0] == email.ProfEmail)//TODO повторяющиеся мейлы
+                    {
+                        exist = true;
+                        if(email.Password == null)
+                        {
+                            id = email.Id;
+                            noPass = true;
+                            break;
+                        }
+
+                    }
+                }
+                if(noPass)
+                {
+                    var result = db.Profs.SingleOrDefault(b => b.Id == id); // меняем пароль для лектора
+                    if(result != null)
+                    {
+                        result.Password = args[1];
+                        db.SaveChanges();
+                    }
+                    db.Clients.Add(new ClientId { Group = null, PhoneId = args[2], IsProf = true }); // добавляем Id телефона лектора в список телефонов
+                    return response = new List<string> { "true", result.ProfName };
+                }
+                if(exist)// всегда должен быть после if(noPass)
+                    return response = new List<string> { "false", "1 Prof already registered" };
+
+                return response = new List<string> { "false", "2 Such Email does not exist" };
+
+            }
+            if(who == "Student")//Post: string “Register” string “Student” string “Group” string “Id”
+            {
+                db.Clients.Add(new ClientId { Group = args[0], PhoneId = args[1], IsProf = false });
+                db.SaveChanges();
+                return response = new List<string> { "true"};
+            }
+            return response;
+        }
+        public static List<string> AddComment(MyContext db, string LessonId, string Message, string Name)
+        {
+            int LesId = Int32.Parse(LessonId);
+            bool ok = false;
+            foreach(Schedule s in db.Schedule)
+            {
+                if(s.id == LesId)
+                {
+                    ok = true;
+                }
+            }
+            if(ok)
+            {
+                db.Comments.Add(new Comment { Name = Name, LessonId = LesId, Commentary = Message });
+                db.SaveChanges();
+                return new List<string> { "true" };
+            }
+            return new List<string> { "false", "There is no lesson with such id" };
         }
     }
 

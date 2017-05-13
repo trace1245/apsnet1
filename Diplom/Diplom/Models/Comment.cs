@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Diplom.Models
 {
-    public class ProfEmails
+    public class Comment
     {
         public int Id { get; set; }
-        public string ProfName { get; set;}
-        public string ProfEmail { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; }
+        public int LessonId { get; set; }
+        public string Commentary { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace Diplom.Models
         public DbSet<ClientId> Clients { get; set; }
         public DbSet<Log> Logfile { get; set; }
         public DbSet<ProfEmails> Profs { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
     }
 }

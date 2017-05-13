@@ -31,9 +31,27 @@ namespace Diplom.Controllers
             if(args[0] == "GetSchedule")//Post: String “GetSchedule” String ”Group” String "StartDate" String "EndDate"
             {                           //StartDate(EndDate)  -   dd-MM-yyyy
                 IEnumerable <Schedule> schedules= db.Schedule;
-                return Json(PostResponse.GetSchedule(schedules, args[1], args[2], args[3]), JsonRequestBehavior.AllowGet);
+                return Json(PostResponse.GetSchedule(db, args[1], args[2], args[3]), JsonRequestBehavior.AllowGet);
+                //TODO возврат комментариев
             }
-            return Json("afasdfsd", JsonRequestBehavior.AllowGet);
+            else if(args[0] == "Check")//Post: string “Check” string “Email” string “Password” // return bool // проверка на существование такого преподавателя
+            {
+                IEnumerable<ProfEmails> profs = db.Profs;
+                return Json(PostResponse.Check(profs, args[1], args[2]), JsonRequestBehavior.AllowGet);
+            }
+            else if(args[0] == "Register")//Post: string “Register” string “Prof” string “Email” string “Password” string “Id”
+            {                               //Post: string “Register” string “Student” string “Group” string “Id”
+                if(args[1] == "Prof")
+                return Json(PostResponse.Register(db, args[1], args[2], args[3], args[4]), JsonRequestBehavior.AllowGet);
+                else
+                    return Json(PostResponse.Register(db, args[1], args[2], args[3]), JsonRequestBehavior.AllowGet);
+
+            }
+            else if(args[0] == "AddComment")// Post: String “AddComment” String “LessonId” String “Message” String "Name"
+            {
+                return Json(PostResponse.AddComment(db, args[1], args[2], args[3]), JsonRequestBehavior.AllowGet);
+            }
+            return Json("wrong arguments", JsonRequestBehavior.AllowGet);
         }
     }
 }

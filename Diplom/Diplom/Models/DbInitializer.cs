@@ -30,9 +30,7 @@ namespace Diplom.Models
             "Будет КР",
             "Сделать двадцатое задание",
             "Переносим в 207 аудиторию",
-            null,
-            "Тестовый комментарий",
-            null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null
+            "Тестовый комментарий"
         };
 
 
@@ -50,7 +48,7 @@ namespace Diplom.Models
 
         protected override void Seed(MyContext db)
         {
-            for(int i = 0; i < 30; i++)
+            for(int i = 0; i < 300; i++)
             {
                 db.Schedule.Add(new Schedule
                 {
@@ -58,11 +56,10 @@ namespace Diplom.Models
                     name = lessons[gen.Next(lessons.Count)],
                     group = groups[gen.Next(groups.Count)],
                     prof = lectors[gen.Next(lectors.Count)],
-                    room = rooms[gen.Next(rooms.Count)],
-                    comment = comments[gen.Next(comments.Count)]
+                    room = rooms[gen.Next(rooms.Count)]
                 });
             }
-            for(int i = 0; i < 30; i++)
+            for(int i = 0; i < 300; i++)
             {
                 db.Schedule.Add(new Schedule
                 {
@@ -70,11 +67,10 @@ namespace Diplom.Models
                     name = lessons[gen.Next(lessons.Count)],
                     group = groups[gen.Next(groups.Count)],
                     prof = lectors[gen.Next(lectors.Count)],
-                    room = rooms[gen.Next(rooms.Count)],
-                    comment = comments[gen.Next(comments.Count)]
+                    room = rooms[gen.Next(rooms.Count)]
                 });
             }
-            for(int i = 0; i < 30; i++)
+            for(int i = 0; i < 300; i++)
             {
                 db.Schedule.Add(new Schedule
                 {
@@ -82,11 +78,10 @@ namespace Diplom.Models
                     name = lessons[gen.Next(lessons.Count)],
                     group = groups[gen.Next(groups.Count)],
                     prof = lectors[gen.Next(lectors.Count)],
-                    room = rooms[gen.Next(rooms.Count)],
-                    comment = comments[gen.Next(comments.Count)]
+                    room = rooms[gen.Next(rooms.Count)]
                 });
             }
-            for(int i = 0; i < 30; i++)
+            for(int i = 0; i < 300; i++)
             {
                 db.Schedule.Add(new Schedule
                 {
@@ -94,13 +89,28 @@ namespace Diplom.Models
                     name = lessons[gen.Next(lessons.Count)],
                     group = groups[gen.Next(groups.Count)],
                     prof = lectors[gen.Next(lectors.Count)],
-                    room = rooms[gen.Next(rooms.Count)],
-                    comment = comments[gen.Next(comments.Count)]
+                    room = rooms[gen.Next(rooms.Count)]
+                });
+            }
+            for(int i = 0; i < 300; i++)
+            {
+                db.Comments.Add(new Comment
+                {
+                    Name = lectors[gen.Next(lectors.Count)],
+                    LessonId = gen.Next(1000),
+                    Commentary = comments[gen.Next(comments.Count)]
                 });
             }
 
 
             db.Clients.Add(new ClientId { Group = "KN-13", PhoneId = "qwerty1234", IsProf = false });
+
+            char c = 'a';
+            for(int i = 0; i < 26; i++, c++)
+            {
+                db.Profs.Add(new ProfEmails { ProfName = c.ToString(), ProfEmail = c.ToString() + "@mail.me" });
+            }
+
             base.Seed(db);
         }
     }

@@ -113,6 +113,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClientId.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DbInitializer.cs" />
     <Compile Include="Models\FormattedSchedule.cs" />
     <Compile Include="Models\Log.cs" />
@@ -126,6 +127,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\FDFSFS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

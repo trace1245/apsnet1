@@ -18,7 +18,25 @@ namespace Diplom.Models
         };
         List<string> lectors = new List<string>
         {
-            "Иванов Иван Иванович", "Владимиров Владимир Владимирович", "Александров Александр Александрович", "Евгенов Евген Евгенович", "Бобрынин Бобрын Бобрнович"
+            "Ковалэнко В.В.",
+            "Бондарэнко В.В.",
+            "Евэнко В.В.",
+            "Злэнко В.В.",
+            "Лучэнко В.В.",
+            "Майстрэнко В.В.",
+            "Ткачэнко В.В.",
+            "Петрэнко В.В.",
+            "Павлэнко В.В.",
+            "Шевчэнко В.В.",
+            "Галаенко В.В.",
+            "Мотриенко В.В.",
+            "Саенко В.В.",
+            "Стратиенко В.В.",
+            "Витребэнько В.В.",
+            "Опэнько В.В.",
+            "Потебэнько В.В.",
+            "Бутэйко В.В.",
+            "Ламэйко В.В."
         };
         List<string> rooms = new List<string>
         {
@@ -106,9 +124,24 @@ namespace Diplom.Models
             db.Clients.Add(new ClientId { Group = "KN-13", PhoneId = "qwerty1234", IsProf = false });
 
             char c = 'a';
-            for(int i = 0; i < 26; i++, c++)
+            for(int i = 0; i < 19; i++, c++)
             {
-                db.Profs.Add(new ProfEmails { ProfName = c.ToString(), ProfEmail = c.ToString() + "@mail.me" });
+                db.Profs.Add(new ProfEmails { ProfName = lectors[i], ProfEmail = c.ToString() + "@mail.me" });
+            }
+
+            foreach(string str in groups)
+            {
+                db.Groups.Add(new Group { Name = str });
+            }
+
+            foreach(string str in rooms)
+            {
+                db.Rooms.Add(new Room { Name = str });
+            }
+
+            foreach(string str in lessons)
+            {
+                db.Lessons.Add(new Lesson { Name = str });
             }
 
             base.Seed(db);

@@ -116,10 +116,13 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DbInitializer.cs" />
     <Compile Include="Models\FormattedSchedule.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\ProfEmail.cs" />
     <Compile Include="Models\PostResponse.cs" />
+    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,10 +5,9 @@ using System.Web;
 
 namespace Diplom.Models
 {
-    public class Log
+    public class Lesson
     {
         public int Id { get; set; }
-        public string ChangedGroup { get; set; }
-        public string Date { get; set; }//TODO datetime
+        public string Name { get; set; }
     }
 }

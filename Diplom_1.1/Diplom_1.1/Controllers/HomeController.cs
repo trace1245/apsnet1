@@ -53,10 +53,6 @@ namespace Diplom.Controllers
             {
                 return Json(PostResponse.AddComment(db, args[1], args[2], args[3]), JsonRequestBehavior.AllowGet);
             }
-            else if(args[0] == "GetLessons")
-            {
-                return Json(PostResponse.GetLessons(db), JsonRequestBehavior.AllowGet);
-            }
             else if(args[0] == "GetRooms")
             {
                 return Json(PostResponse.GetRooms(db), JsonRequestBehavior.AllowGet);
@@ -68,6 +64,10 @@ namespace Diplom.Controllers
             else if(args[0] == "GetLectors")
             {
                 return Json(PostResponse.GetLectors(db), JsonRequestBehavior.AllowGet);
+            }
+            else if(args[0] == "GetGRL")
+            {
+                return Json(PostResponse.GetGRL(db), JsonRequestBehavior.AllowGet);
             }
             return Json(new { State = "false", Info = "wrong arguments" }, JsonRequestBehavior.AllowGet);
         }

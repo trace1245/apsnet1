@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
+using Diplom_1._1.Models;
 
 namespace Diplom.Models
 {
@@ -62,7 +63,7 @@ namespace Diplom.Models
             }
             return result;
         }
-        public static List<Comment> GetComments(MyContext db, string group, string StartDate, string EndDate)
+        public static List<Comment> GetComments(MyContext db, string arg, string StartDate, string EndDate)
         {
             DateTime StartDateD = StrToDate(StartDate);
             DateTime EndDateD = StrToDate(EndDate);
@@ -70,7 +71,27 @@ namespace Diplom.Models
             List<Comment> coms = new List<Comment>();
             foreach(Schedule s in db.Schedule)
             {
-                if((s.group == group) && (s.time >= StartDateD && s.time <= EndDateD))
+                if((s.group == arg) && (s.time >= StartDateD && s.time <= EndDateD))
+                {
+                    foreach(Comment c in db.Comments)
+                    {
+                        if(c.LessonId == s.id)
+                        {
+                            coms.Add(c);
+                        }
+                    }
+                }
+                else if((s.room == arg) && (s.time >= StartDateD && s.time <= EndDateD))
+                {
+                    foreach(Comment c in db.Comments)
+                    {
+                        if(c.LessonId == s.id)
+                        {
+                            coms.Add(c);
+                        }
+                    }
+                }
+                else if((s.prof == arg) && (s.time >= StartDateD && s.time <= EndDateD))
                 {
                     foreach(Comment c in db.Comments)
                     {
@@ -101,34 +122,46 @@ namespace Diplom.Models
                 int id = 1;
                 bool noPass = false;
                 bool exist = false;
+                string pswrd = "nopass432467823467";
                 foreach(ProfEmails email in db.Profs)
                 {
                     if(args[0] == email.ProfEmail)//TODO повторяющиеся мейлы
                     {
                         exist = true;
-                        if(email.Password == null)
+                        id = email.Id;
+                        if(email.Password == null)//если такая запись не была активирована
                         {
-                            id = email.Id;
                             noPass = true;
+                            break;
+                        }
+                        else// если был введен правильный пароль
+                        {
+                            pswrd = email.Password;
                             break;
                         }
 
                     }
                 }
+                var result = db.Profs.SingleOrDefault(b => b.Id == id); // достаем нужного лекстора из бд
                 if(noPass)
                 {
-                    var result = db.Profs.SingleOrDefault(b => b.Id == id); // меняем пароль для лектора
+                    
                     if(result != null)
                     {
                         result.Password = args[1];
                         db.SaveChanges();
                     }
                     db.Clients.Add(new ClientId { Group = null, PhoneId = args[2], IsProf = true }); // добавляем Id телефона лектора в список телефонов
-                    return new { State = "true", ProfName = result.ProfName };
+                    return new { State = "true", ProfName = result.Name };
                 }
                 if(exist)// всегда должен быть после if(noPass)
+                {
+                    if(args[1] == pswrd)
+                    {
+                        return new { State = "true", ProfName = result.Name };
+                    }
                     return new { State = "false", Info = "Prof already registered" };
-
+                }
                 return new { State = "false", Info = "Such Email does not exist" };
 
             }
@@ -171,41 +204,40 @@ namespace Diplom.Models
             }
             return new { State = "false", Info = "There is no lesson with such id" };
             }
-        public static List<Group> GetGroups(MyContext db)
+        public static List<GRL> GetGroups(MyContext db)
         {
-            List<Group> groups = new List<Group>();
+            List<GRL> groups = new List<GRL>();
             foreach(Group g in db.Groups)
             {
                 groups.Add(g);
             }
             return groups;
         }
-        public static List<Lesson> GetLessons(MyContext db)
+        public static List<GRL> GetRooms(MyContext db)
         {
-            List<Lesson> lessonss = new List<Lesson>();
-            foreach(Lesson l in db.Lessons)
-            {
-                lessonss.Add(l);
-            }
-            return lessonss;
-        }
-        public static List<Room> GetRooms(MyContext db)
-        {
-            List<Room> rooms = new List<Room>();
+            List<GRL> rooms = new List<GRL>();
             foreach(Room r in db.Rooms)
             {
                 rooms.Add(r);
             }
             return rooms;
         }
-        public static List<object> GetLectors(MyContext db)
+        public static List<GRL> GetLectors(MyContext db)
         {
-            List<object> profNames = new List<object>();
+            List<GRL> profNames = new List<GRL>();
             foreach(ProfEmails prof in db.Profs)
             {
-                profNames.Add(new { Name = prof.ProfName });
+                profNames.Add(new GRL { Name = prof.Name});
             }
             return profNames;
+        }
+        public static List<List<GRL>> GetGRL(MyContext db)
+        {
+            List<List<GRL>> mylist = new List<List<GRL>>();
+            mylist.Add(GetGroups(db));
+            mylist.Add(GetRooms(db));
+            mylist.Add(GetLectors(db));
+            return mylist;
         }
 
 

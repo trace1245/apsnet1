@@ -5,9 +5,8 @@ using System.Web;
 
 namespace Diplom_1._1.Models
 {
-    public class Lesson
+    public class GRL//Groups Rooms Lectors
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

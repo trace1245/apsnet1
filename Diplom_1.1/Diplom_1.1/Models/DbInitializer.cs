@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using Diplom_1._1.Models;
 
 namespace Diplom.Models
 {
@@ -126,7 +127,7 @@ namespace Diplom.Models
             char c = 'a';
             for(int i = 0; i < 19; i++, c++)
             {
-                db.Profs.Add(new ProfEmails { ProfName = lectors[i], ProfEmail = c.ToString() + "@mail.me" });
+                db.Profs.Add(new ProfEmails { Name = lectors[i], ProfEmail = c.ToString() + "@mail.me" });
             }
 
             foreach(string str in groups)

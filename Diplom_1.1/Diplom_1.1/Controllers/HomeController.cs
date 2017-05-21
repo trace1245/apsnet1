@@ -25,8 +25,8 @@ namespace Diplom.Controllers
             return View();
         }
 
-        [HttpGet]
-        public JsonResult Indexx(params string[] args)
+        [HttpPost]
+        public JsonResult Index(params string[] args)
         {
             if(args[0] == "GetSchedule")//Post: String “GetSchedule” String ”Group” String "StartDate" String "EndDate"
             {                           //StartDate(EndDate)  -   dd-MM-yyyy

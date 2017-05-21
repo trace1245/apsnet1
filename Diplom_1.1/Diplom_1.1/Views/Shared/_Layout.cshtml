@@ -17,15 +17,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Раздел 1", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Раздел 2", "About", "Home")</li>
-                    <li>@Html.ActionLink("Раздел 3", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Додавання розкладу", "Index", "AddSchedule")</li>
+                    <li>@Html.ActionLink("Редагування розкладу", "Index", "EditSchedule")</li>
+                    <li>@Html.ActionLink("Реєстрація викладачів", "Index", "ProfRegister")</li>
+                    <li>@Html.ActionLink("Додавання лекцій та аудиторій", "Index", "AddRoom")</li>
+                    <li>@Html.ActionLink("Розсилка та видалення повідомлень", "Index", "Comments")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>

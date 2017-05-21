@@ -127,18 +127,25 @@ namespace Diplom.Models
                     return new { State = "true", ProfName = result.ProfName };
                 }
                 if(exist)// всегда должен быть после if(noPass)
-                    return new { State = "false", Info = "1 Prof already registered" };
+                    return new { State = "false", Info = "Prof already registered" };
 
-                return new { State = "false", Info = "2 Such Email does not exist" };
+                return new { State = "false", Info = "Such Email does not exist" };
 
             }
             if(who == "Student")//Post: string “Register” string “Student” string “Group” string “Id”
             {
-                db.Clients.Add(new ClientId { Group = args[0], PhoneId = args[1], IsProf = false });
-                db.SaveChanges();
-                return new { State = "true"};
+                foreach(Group groups in db.Groups)
+                {
+                    if(groups.Name == args[0])
+                    {
+                        db.Clients.Add(new ClientId { Group = args[0], PhoneId = args[1], IsProf = false });
+                        db.SaveChanges();
+                        return new { State = "true" };
+                    }
+                }
+                return new { State = "false" };
             }
-            return new { State = "false", Info = "0 Wrong 'who' argument. Meant to be 'Student' or 'Prof'" };
+            return new { State = "false", Info = "Wrong 'who' argument. Meant to be 'Student' or 'Prof'" };
         }
         public static object AddComment(MyContext db, string LessonId, string Message, string Name)
         {

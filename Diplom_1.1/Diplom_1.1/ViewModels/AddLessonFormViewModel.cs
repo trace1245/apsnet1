@@ -9,5 +9,6 @@ namespace Diplom_1._1.ViewModels
     public class AddLessonFormViewModel
     {
         public TemporaryAddedLessons Lesson { get; set; }
+        public DateTime FineDate { get; set; }
     }
 }

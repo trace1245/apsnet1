@@ -11,7 +11,7 @@ namespace Diplom.Models
     {
         List<string> lessons = new List<string>
         {
-            "Математика", "Ин. яз", "Программирование", "Экономика", "История", "Культурология", "Философия"
+            "Математика", "Ин. яз", "Программирование", "Экономика", "История", "Культурология", "Философия", "Основы теоретических теорий в малых экосистемах"
         };
         List<string> groups = new List<string>
         {
@@ -151,7 +151,7 @@ namespace Diplom.Models
                 name = lessons[gen.Next(lessons.Count)],
                 group = null,
                 prof = lectors[gen.Next(lectors.Count)],
-                room = rooms[gen.Next(rooms.Count)]
+                room = rooms[gen.Next(rooms.Count)],
             });
 
             base.Seed(db);

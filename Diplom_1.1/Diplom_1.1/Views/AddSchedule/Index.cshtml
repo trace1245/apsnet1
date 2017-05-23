@@ -23,13 +23,28 @@
         </div>
         <div class="panel-body">
 
-            @if(!Model.filled)
+            @if(Model.filled == true)
             {
-                @using(Html.BeginForm())
+            <div class="form-group">
+                <label>Обрано групу: @Model.ChosenGroup </label>
+            </div>
+            <p>
+            </p>
+            <div class="form-group">
+                <label>Обрано дати: </label>
+                З @Model.StartDate по @Model.EndDate @*TODO формат*@
+            </div>
+            @Html.Partial("_AddLessonTable")
+            }
+
+
+            @if(Model.filled == false)
+            {
+                using(Html.BeginForm())
                 {
                     <div class="form-group ">
                         <label>Вибір групи: </label> 
-                        @Html.DropDownList("Name", ViewBag.Groups as SelectList, new { @class = "form-horisontal " })
+                        @Html.DropDownListFor(x => x.ChosenGroup, ViewBag.Groups as SelectList, new { @class = "form-horisontal " })
                     </div>
                     <div class="form-group">
                         <label>Вибір дат, за які додається розклад</label>
@@ -44,18 +59,7 @@
                         <input type="submit" value="Створити розклад" class="btn btn-success" />
                     </div>
                 }
-                if(Model.filled)
-                {
-                    <div class="form-group">
-                        <label>Обрано групу: @Model.ChosenGroup </label>
-                    </div>
-                    <div class="form-group">
-                        <label>Обрано дати: </label>
-                        <p></p>
-                        З @Model.StartDate по @Model.EndDate
-                    </div>
-                    @Html.Partial("_AddLessonTable")
-                }
+                
 
 
 

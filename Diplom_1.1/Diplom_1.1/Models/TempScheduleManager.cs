@@ -102,10 +102,32 @@ namespace Diplom_1._1.Models
         }
         public static void AddPermSchedule(MyContext db)
         {
+            List<TemporaryAddedLessons> lessons = new List<TemporaryAddedLessons>();
+            DateTime time;
+            DateTime? EndDate = db.TLessons.SingleOrDefault((b => b.id == 1)).EndDate;
             foreach(TemporaryAddedLessons lesson in db.TLessons)
             {
+                time = lesson.time;
                 if(lesson.id == 1)
                     continue;
+                do
+                {
+                    lessons.Add(new TemporaryAddedLessons
+                    {
+                        time = time,
+                        name = lesson.name,
+                        group = lesson.group,
+                        prof = lesson.prof,
+                        room = lesson.room
+                    });
+
+                    time = time.AddDays(13);
+
+                } while(time <= EndDate);
+            }
+
+            foreach(TemporaryAddedLessons lesson in lessons)
+            {
                 db.Schedule.Add(new Schedule
                 {
                     time = lesson.time,
@@ -115,6 +137,26 @@ namespace Diplom_1._1.Models
                     room = lesson.room
                 });
             }
+
+            db.SaveChanges();
+            TemporaryAddedLessons FirstTemp = db.TLessons.SingleOrDefault((b => b.id == 1));
+            var rows = from o in db.TLessons
+                       select o;
+            foreach(var row in rows)
+            {
+                db.TLessons.Remove(row);
+            }// удаляем все записи из временной таблицы
+            db.TLessons.Add(new TemporaryAddedLessons
+            {
+                time = FirstTemp.time,
+                name = FirstTemp.name,
+                group = FirstTemp.group,
+                prof = FirstTemp.prof,
+                room = FirstTemp.room,
+                StartDate = FirstTemp.StartDate,
+                EndDate = FirstTemp.EndDate
+            });
+            db.SaveChanges();
         }
     }
 }

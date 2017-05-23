@@ -16,7 +16,8 @@ namespace Diplom.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Lesson> Lessons { get; set; } // возможно будет использоваться для вывода списка существующих предметов
+        public DbSet<TemporaryAddedLessons> TLessons { get; set; }
 
     }
 }

@@ -1,0 +1,133 @@
+﻿@model Diplom_1._1.ViewModels.AddScheduleViewModel
+<p></p>
+<div>
+    <label>Перший тиждень</label>
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>Понеділок</th>
+            <th>Вівторок</th>
+            <th>Середа</th>
+            <th>Четвер</th>
+            <th>П'ятниця</th>
+            <th>Субота</th>
+            <th>Неділя</th>
+        </tr>
+        @for(int i = 0; i < Model.AddedLessons.Count; i++)
+        {
+            <tr>
+                <td>
+                    Понеділок лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 1, week = 1, date = Model.StartDate})';" class="btn" />
+                </td>
+                <td>
+                    Вівторок лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 2, week = 1, date = Model.StartDate})';" class="btn" />
+                </td>
+                <td>
+                    Середа лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 3, week = 1, date = Model.StartDate})';" class="btn" />
+                </td>
+                <td>
+                    Четвер лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 4, week = 1, date = Model.StartDate})';" class="btn" />
+                </td>
+                <td>
+                    П'ятниця лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 5, week = 1, date = Model.StartDate})';" class="btn" />
+                </td>
+                <td>
+                    Субота лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 6, week = 1, date = Model.StartDate})';" class="btn" />
+                </td>
+                <td>
+                    Неділя лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 7, week = 1, date = Model.StartDate})';" class="btn" />
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>
+<p></p>
+<div>
+    <label>Другий тиждень</label>
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>Понеділок</th>
+            <th>Вівторок</th>
+            <th>Середа</th>
+            <th>Четвер</th>
+            <th>П'ятниця</th>
+            <th>Субота</th>
+            <th>Неділя</th>
+        </tr>
+        @for(int i = 0; i < Model.AddedLessons.Count; i++)
+        {
+            <tr>
+                <td>
+                    Понеділок лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 1, week = 2, date = Model.StartDate })';" class="btn" />
+                </td>
+                <td>
+                    Вівторок лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 2, week = 2, date = Model.StartDate })';" class="btn" />
+                </td>
+                <td>
+                    Середа лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 3, week = 2, date = Model.StartDate })';" class="btn" />
+                </td>
+                <td>
+                    Четвер лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 4, week = 2, date = Model.StartDate })';" class="btn" />
+                </td>
+                <td>
+                    П'ятниця лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 5, week = 2, date = Model.StartDate })';" class="btn" />
+                </td>
+                <td>
+                    Субота лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 6, week = 2, date = Model.StartDate })';" class="btn" />
+                </td>
+                <td>
+                    Неділя лекція @Model.AddedLessons[i].id
+                    <input type="button"
+                           value="Додати пару"
+                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 7, week = 2, date = Model.StartDate })';" class="btn" />
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>
+<div class="text-right">
+    <input type="submit" value="Заповнити розклад" class="btn btn-success" />
+</div>
+
+
+

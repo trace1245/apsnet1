@@ -1,8 +1,68 @@
-﻿
+﻿@using Diplom.Models;
+@using Diplom_1._1.Models;
+
+@model Diplom_1._1.ViewModels.AddScheduleViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddSchedule</h2>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div @*class="panel-success"*@>
+        <div class="panel-heading text-center">
+            <h4>Додавання розкладу</h4>
+        </div>
+        <div class="panel-body">
+
+            @if(!Model.filled)
+            {
+                @using(Html.BeginForm())
+                {
+                    <div class="form-group ">
+                        <label>Вибір групи: </label> 
+                        @Html.DropDownList("Name", ViewBag.Groups as SelectList, new { @class = "form-horisontal " })
+                    </div>
+                    <div class="form-group">
+                        <label>Вибір дат, за які додається розклад</label>
+                        <p></p>
+                        З
+                        @Html.TextBoxFor(x => x.StartDate, "{dd.MM.yyyy}")
+                        по
+                        @Html.TextBoxFor(x => x.EndDate, "{dd.MM.yyyy}")
+                        <p><label>Пркиклад заповнення: 29.05.2017(понеділок)  -  29.08.2017(п'ятниця)</label></p>
+                    </div>
+                    <div class="text-left">
+                        <input type="submit" value="Створити розклад" class="btn btn-success" />
+                    </div>
+                }
+                if(Model.filled)
+                {
+                    <div class="form-group">
+                        <label>Обрано групу: @Model.ChosenGroup </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Обрано дати: </label>
+                        <p></p>
+                        З @Model.StartDate по @Model.EndDate
+                    </div>
+                    @Html.Partial("_AddLessonTable")
+                }
+
+
+
+
+            }
+        </div>
+    </div>
+</body>
+</html>
 

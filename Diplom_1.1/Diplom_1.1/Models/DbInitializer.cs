@@ -145,6 +145,15 @@ namespace Diplom.Models
                 db.Lessons.Add(new Lesson { Name = str });
             }
 
+            db.TLessons.Add(new TemporaryAddedLessons
+            {
+                time = RandomDay(new TimeSpan(8, 30, 0)),
+                name = lessons[gen.Next(lessons.Count)],
+                group = null,
+                prof = lectors[gen.Next(lectors.Count)],
+                room = rooms[gen.Next(rooms.Count)]
+            });
+
             base.Seed(db);
         }
     }

@@ -24,6 +24,6 @@ namespace Diplom_1._1.ViewModels
 
         public List<TemporaryAddedLessons> AddedLessons { get; set; }
         public List<Group> AllGroups { get; set; }
-        public bool filled { get; set; }
+        public bool filled { get; set; } // вызывается в FixateChange
     }
 }

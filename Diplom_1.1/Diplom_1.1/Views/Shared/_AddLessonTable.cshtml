@@ -12,50 +12,157 @@
             <th>Субота</th>
             <th>Неділя</th>
         </tr>
-        @for(int i = 0; i < Model.AddedLessons.Count; i++)
+        @for(int j = 0; j < 6; j++)
         {
             <tr>
                 <td>
-                    Понеділок лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 0, date = Model.StartDate})';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(0) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 0, date = Model.StartDate})';" class="btn" />
+                    }
+                   
                 </td>
                 <td>
-                    Вівторок лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 1, date = Model.StartDate})';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(1) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 1, date = Model.StartDate})';" class="btn" />
+                    }
+                 </td>
+                <td>
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(2) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 2, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Середа лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 2, date = Model.StartDate})';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(3) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 3, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Четвер лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 3, date = Model.StartDate})';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(4) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 4, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    П'ятниця лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 4, date = Model.StartDate})';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(5) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 5, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Субота лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 5, date = Model.StartDate})';" class="btn" />
-                </td>
-                <td>
-                    Неділя лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 6, date = Model.StartDate})';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(6) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 6, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
 
             </tr>
@@ -75,50 +182,155 @@
             <th>Субота</th>
             <th>Неділя</th>
         </tr>
-        @for(int i = 0; i < Model.AddedLessons.Count; i++)
+        @for(int j = 0; j < 6; j++)
         {
             <tr>
                 <td>
-                    Понеділок лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 7, date = Model.StartDate })';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(7) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 7, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Вівторок лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 8, date = Model.StartDate })';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(8) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 8, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Середа лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 9, date = Model.StartDate })';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(9) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 9, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Четвер лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 10, date = Model.StartDate })';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(10) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 10, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    П'ятниця лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 11, date = Model.StartDate })';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(11) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 11, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Субота лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 12, date = Model.StartDate })';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(12) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 12, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
                 <td>
-                    Неділя лекція @Model.AddedLessons[i].id
-                    <input type="button"
-                           value="Додати пару"
-                           onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 13, date = Model.StartDate })';" class="btn" />
+                    @for(int i = 0; i < Model.AddedLessons.Count; i++)
+                    {
+                        if(Model.AddedLessons[i].time.Date == Model.StartDate.Value.Date.AddDays(13) && !Model.AddedLessons[i].AddedToTable)
+                        {
+                            Model.AddedLessons[i].AddedToTable = true;
+                            <p>@Model.AddedLessons[i].name</p>
+                            <p>@Model.AddedLessons[i].prof</p>
+                            <p>@Model.AddedLessons[i].room</p>
+                            <p>@Model.AddedLessons[i].time.TimeOfDay</p>
+                            break;
+                        }
+                    }
+
+                    @if(j == 0)
+                    {
+                        <input type="button"
+                               value="Додати пару"
+                               onclick="window.location.href='@Url.Action("AddLessonForm", "AddSchedule", new { day = 13, date = Model.StartDate})';" class="btn" />
+                    }
                 </td>
 
             </tr>
@@ -126,7 +338,9 @@
     </table>
 </div>
 <div class="text-right">
-    <input type="submit" value="Заповнити розклад" class="btn btn-success" />
+    <input type="button"
+           value="Заповнити розклад"
+           onclick="window.location.href='@Url.Action("Add", "AddSchedule")';" class="btn btn-success" />
 </div>
 
 

@@ -78,5 +78,43 @@ namespace Diplom_1._1.Models
                 filled = true
             };
         }
+        public static void AddTempSchedule(MyContext db, AddLessonFormViewModel model)
+        {
+            DateTime time = model.FineDate;
+            TimeSpan hours = model.Lesson.time.TimeOfDay;
+            time = time.Add(hours);
+            var result = db.TLessons.SingleOrDefault((b => b.id == 1));
+
+            db.TLessons.Add(new TemporaryAddedLessons
+            {
+                time = time,
+                name = model.Lesson.name,
+                group = result.group,
+                prof = model.Lesson.prof,
+                room = model.Lesson.room,
+                StartDate = result.StartDate,
+                EndDate = result.EndDate
+            });
+
+                db.SaveChanges();
+            result = db.TLessons.SingleOrDefault((b => b.id == 2));
+
+        }
+        public static void AddPermSchedule(MyContext db)
+        {
+            foreach(TemporaryAddedLessons lesson in db.TLessons)
+            {
+                if(lesson.id == 1)
+                    continue;
+                db.Schedule.Add(new Schedule
+                {
+                    time = lesson.time,
+                    name = lesson.name,
+                    group = lesson.group,
+                    prof = lesson.prof,
+                    room = lesson.room
+                });
+            }
+        }
     }
 }

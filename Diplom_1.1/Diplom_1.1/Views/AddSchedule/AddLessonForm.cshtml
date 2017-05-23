@@ -33,8 +33,8 @@
                 <div>
                     <div class="form-group">
                         <label>Час</label>
-                        @Html.TextBoxFor(x => x.Lesson.time, "{HH.mm}", new { @class = "form-control" }) @*// TODO -sec*@
-                        Формат дати: 16.00.00  {dd.MM.yyyy HH.mm}
+                        @Html.TextBoxFor(x => x.Lesson.time, "{HH:mm}", new { @class = "form-control" }) @*// TODO -sec*@
+                        Формат дати: 16:00:00  {dd.MM.yyyy HH.mm}
                         @start
                         @Html.HiddenFor(x => x.FineDate, new { @Value = start.ToString()})
 
@@ -55,9 +55,9 @@
 
 
                 <div class="text-center">
-                    @*<input type="button" TODO заставить это работать
+                    <input type="button"
                            value="Повернутись"
-                           onclick="window.location.href='@Url.Action("Index", "AddSchedule")';" class="btn btn-success" />*@
+                           onclick="window.location.href='@Url.Action("Index", "AddSchedule")';" class="btn btn-success" />
                     <input type="submit" value="Додати лекцію" class="btn btn-success text-right" />
                 </div>
             }

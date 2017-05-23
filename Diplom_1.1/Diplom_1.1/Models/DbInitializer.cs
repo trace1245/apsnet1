@@ -147,11 +147,13 @@ namespace Diplom.Models
 
             db.TLessons.Add(new TemporaryAddedLessons
             {
-                time = RandomDay(new TimeSpan(8, 30, 0)),
+                time = DateTime.Today,
                 name = lessons[gen.Next(lessons.Count)],
                 group = null,
                 prof = lectors[gen.Next(lectors.Count)],
                 room = rooms[gen.Next(rooms.Count)],
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today
             });
 
             base.Seed(db);

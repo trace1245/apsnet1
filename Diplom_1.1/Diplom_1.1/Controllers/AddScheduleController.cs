@@ -31,7 +31,7 @@ namespace Diplom_1._1.Controllers
         }
 
         [HttpGet]
-        public ViewResult AddLessonForm(int day, DateTime date)//TODO форма, добавляющая во временную таблицу введенные данные
+        public ViewResult AddLessonForm(int day, DateTime date)
         {
             ViewBag.Day = day;
             ViewBag.Date = date;
@@ -39,11 +39,18 @@ namespace Diplom_1._1.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLessonForm(AddLessonFormViewModel model)//TODO форма, добавляющая во временную таблицу введенные данные
+        public ActionResult AddLessonForm(AddLessonFormViewModel model)
         {
+            TempScheduleManager.AddTempSchedule(db, model);
             return RedirectToAction("Index", "AddSchedule");
 
             //return model.FineDate.ToString() + " " + model.Lesson.name + " " + model.Lesson.time;
+        }
+
+        public ActionResult Add()
+        {
+            TempScheduleManager.AddPermSchedule(db);
+            return RedirectToAction("Index", "Home");
         }
 
         //TODO форма, добавляющая созданное расписание в бд 

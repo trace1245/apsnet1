@@ -50,20 +50,16 @@
                         <label>Вибір дат, за які додається розклад</label>
                         <p></p>
                         З
-                        @Html.TextBoxFor(x => x.StartDate, "{dd.MM.yyyy}")
+                        @Html.TextBoxFor(x => x.StartDate, "dd-MM-yyyy", new { @Value = ""})
                         по
-                        @Html.TextBoxFor(x => x.EndDate, "{dd.MM.yyyy}")
-                        <p><label>Пркиклад заповнення: 29.05.2017(понеділок)  -  29.08.2017(п'ятниця)</label></p>
+                        @Html.TextBoxFor(x => x.EndDate, "dd-MM-yyyy", new { @Value = "" })
+                        <p><label>Пркиклад заповнення: 29-05-2017(понеділок)  -  29-08-2017(п'ятниця)</label></p>
                     </div>
                     <div class="text-left">
                         <input type="submit" value="Створити розклад" class="btn btn-success" />
                     </div>
                 }
                 
-
-
-
-
             }
         </div>
     </div>

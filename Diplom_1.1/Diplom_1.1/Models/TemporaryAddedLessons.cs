@@ -15,5 +15,6 @@ namespace Diplom_1._1.Models
         public string room { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public bool AddedToTable { get; set; }
     }
 }

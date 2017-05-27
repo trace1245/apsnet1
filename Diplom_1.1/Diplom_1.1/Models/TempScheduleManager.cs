@@ -12,8 +12,8 @@ namespace Diplom_1._1.Models
     {
         public static AddScheduleViewModel GetTempInfo(MyContext db)
         {
-            List<TemporaryAddedLessons> TempList = new List<TemporaryAddedLessons>();
             List<Group> groups = new List<Group>();
+            List<TemporaryAddedLessons> TempList = new List<TemporaryAddedLessons>();
             foreach(TemporaryAddedLessons t in db.TLessons)
             {
                 TempList.Add(t);
@@ -43,7 +43,18 @@ namespace Diplom_1._1.Models
         }
         public static AddScheduleViewModel FixateChange(MyContext db, AddScheduleViewModel model)
         {
-            var result = db.TLessons.SingleOrDefault((b => b.id == 1));
+            List<TemporaryAddedLessons> TempList = new List<TemporaryAddedLessons>();
+            List<Group> groups = new List<Group>();
+            foreach(TemporaryAddedLessons t in db.TLessons)
+            {
+                TempList.Add(t);
+            }
+            foreach(Group g in db.Groups)
+            {
+                groups.Add(g);
+            }
+
+            var result = TempList[0];
             SelectList ListGroups = new SelectList(db.Groups, "Id", "Name");
             foreach(SelectListItem i in ListGroups)
             {
@@ -57,16 +68,6 @@ namespace Diplom_1._1.Models
             result.EndDate = model.EndDate;
             db.SaveChanges();
 
-            List<TemporaryAddedLessons> TempList = new List<TemporaryAddedLessons>();
-            List<Group> groups = new List<Group>();
-            foreach(TemporaryAddedLessons t in db.TLessons)
-            {
-                TempList.Add(t);
-            }
-            foreach(Group g in db.Groups)
-            {
-                groups.Add(g);
-            }
 
             return new AddScheduleViewModel
             {
@@ -83,7 +84,13 @@ namespace Diplom_1._1.Models
             DateTime time = model.FineDate;
             TimeSpan hours = model.Lesson.time.TimeOfDay;
             time = time.Add(hours);
-            var result = db.TLessons.SingleOrDefault((b => b.id == 1));
+
+            List<TemporaryAddedLessons> TempList = new List<TemporaryAddedLessons>();
+            foreach(TemporaryAddedLessons t in db.TLessons)
+            {
+                TempList.Add(t);
+            }
+            var result = TempList[0];
 
             db.TLessons.Add(new TemporaryAddedLessons
             {
@@ -97,14 +104,21 @@ namespace Diplom_1._1.Models
             });
 
                 db.SaveChanges();
-            result = db.TLessons.SingleOrDefault((b => b.id == 2));
 
         }
         public static void AddPermSchedule(MyContext db)
         {
             List<TemporaryAddedLessons> lessons = new List<TemporaryAddedLessons>();
             DateTime time;
-            DateTime? EndDate = db.TLessons.SingleOrDefault((b => b.id == 1)).EndDate;
+
+            List<TemporaryAddedLessons> TempList = new List<TemporaryAddedLessons>();
+            foreach(TemporaryAddedLessons t in db.TLessons)
+            {
+                TempList.Add(t);
+            }
+            var result = TempList[0];
+
+            DateTime? EndDate = result.EndDate;
             foreach(TemporaryAddedLessons lesson in db.TLessons)
             {
                 time = lesson.time;
@@ -139,7 +153,7 @@ namespace Diplom_1._1.Models
             }
 
             db.SaveChanges();
-            TemporaryAddedLessons FirstTemp = db.TLessons.SingleOrDefault((b => b.id == 1));
+            TemporaryAddedLessons FirstTemp = result;
             var rows = from o in db.TLessons
                        select o;
             foreach(var row in rows)
@@ -150,7 +164,7 @@ namespace Diplom_1._1.Models
             {
                 time = FirstTemp.time,
                 name = FirstTemp.name,
-                group = FirstTemp.group,
+                group = null,
                 prof = FirstTemp.prof,
                 room = FirstTemp.room,
                 StartDate = FirstTemp.StartDate,

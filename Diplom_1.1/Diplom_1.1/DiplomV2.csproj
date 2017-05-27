@@ -177,6 +177,7 @@
     <Compile Include="Models\ClientId.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DbInitializer.cs" />
+    <Compile Include="Models\EditScheduleManager.cs" />
     <Compile Include="Models\FormattedSchedule.cs" />
     <Compile Include="Models\GRL.cs" />
     <Compile Include="Models\Group.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AddLessonFormViewModel.cs" />
     <Compile Include="ViewModels\AddScheduleViewModel.cs" />
+    <Compile Include="ViewModels\EditScheduleChoseGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SiteDb.mdf" />
@@ -262,6 +264,7 @@
     <Content Include="Views\AddSchedule\Index.cshtml" />
     <Content Include="Views\AddSchedule\AddLessonForm.cshtml" />
     <Content Include="Views\Shared\_AddLessonTable.cshtml" />
+    <Content Include="Views\Shared\_EditLessonTable.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

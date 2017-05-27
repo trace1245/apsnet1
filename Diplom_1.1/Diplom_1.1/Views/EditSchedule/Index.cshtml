@@ -1,8 +1,58 @@
-﻿
+﻿@using Diplom.Models;
+@using Diplom_1._1.Models;
+@model Diplom_1._1.ViewModels.EditScheduleChoseGroupViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditSchedule</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div @*class="panel-success"*@>
+        <div class="panel-heading text-center">
+            <h4>Перегляд та редагування розкладу</h4>
+        </div>
 
+
+        <div class="panel-body">
+
+
+            @if(Model.filled == true)
+            {
+                @Html.Partial("_EditLessonTable")
+            }
+            @if(Model.filled == false)
+            {
+                using(Html.BeginForm())
+                {
+                    <div class="form-group ">
+                        <label>Вибір групи: </label>
+                        @Html.DropDownListFor(x => x.ChosenGroup, ViewBag.Groups as SelectList, new { @class = "form-horisontal " })
+                    </div>
+                    <div class="form-group">
+                        <label>Вибір місяця</label>
+                        @Html.DropDownListFor(model => Model.ChosenTime, new SelectList(
+                    Enumerable.Range(1, 12).Select(r => new
+                    {
+                        Text = new DateTime(2000, r, 1).ToString("MM"),
+                        Value = r.ToString()
+                    }), "Value", "Text", Model.ChosenTime))
+                    </div>
+                    @Html.HiddenFor(x => x.filled, new { @Value = "true" })
+                    <div class="text-left">
+                        <input type="submit" value="Переглянути/змінити розклад" class="btn btn-success" />
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</body>
+</html>

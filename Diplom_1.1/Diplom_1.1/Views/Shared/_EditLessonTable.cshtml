@@ -1,0 +1,197 @@
+﻿@model Diplom_1._1.ViewModels.EditScheduleChoseGroupViewModel
+<p></p>
+<div>
+   
+        
+        @{
+            int LastDate = 0;
+            bool FoundFirst = false;
+    <table class="table table-bordered table-responsive table-hover ">
+        <tr>
+            <th>Понеділок</th>
+            <th>Вівторок</th>
+            <th>Середа</th>
+            <th>Четвер</th>
+            <th>П'ятниця</th>
+            <th>Субота</th>
+            <th>Неділя</th>
+        </tr>
+        @for(int j = 0; j < 5; j++)
+        {
+            <tr>
+                <td>
+                    @*понедельник 1 - 7*@
+
+                    @for(int i = 0; i < Model.schedule.Count; i++)
+                    {
+                        
+
+                        if(Model.schedule[i].time.DayOfWeek == DayOfWeek.Monday && Model.schedule[i].time.Day == (LastDate + 1) && Model.schedule[i].group != "filled")
+                        {
+                            <p>@Model.schedule[i].name</p>
+                            <p>@Model.schedule[i].prof</p>
+                            <p>@Model.schedule[i].room</p>
+                            <p>@Model.schedule[i].time.TimeOfDay</p>
+                            <label>Id пари: @Model.schedule[i].id</label>
+                            <p><label>@Model.schedule[i].time.ToString("dd/MM/yyyy")</label></p>
+                            <p> - - - - - - - - - - - - - -</p>
+                            Model.schedule[i].group = "filled";
+                            FoundFirst = true;
+                        }
+                    }
+                    @if(FoundFirst)
+                    {
+                        LastDate++;
+                    }
+                    
+                        
+
+                </td>
+                <td>
+                    @*вторник 8 - 14*@
+                    @for(int i = 0; i < Model.schedule.Count; i++)
+                    {
+                        if(Model.schedule[i].time.DayOfWeek == DayOfWeek.Tuesday && Model.schedule[i].time.Day == (LastDate + 1) && Model.schedule[i].group != "filled")
+                        {
+                            <p>@Model.schedule[i].name</p>
+                            <p>@Model.schedule[i].prof</p>
+                            <p>@Model.schedule[i].room</p>
+                            <p>@Model.schedule[i].time.TimeOfDay</p>
+                            <label>Id пари: @Model.schedule[i].id</label>
+                            <p><label>@Model.schedule[i].time.ToString("dd/MM/yyyy")</label></p>
+                            <p> - - - - - - - - - - - - - -</p>
+                            Model.schedule[i].group = "filled";
+                            FoundFirst = true;
+                        }
+                    }
+                    @if(FoundFirst)
+                    {
+                        LastDate++;
+                    }
+                </td>
+                <td>
+                    @for(int i = 0; i < Model.schedule.Count; i++)
+                    {
+                        if(Model.schedule[i].time.DayOfWeek == DayOfWeek.Wednesday && Model.schedule[i].time.Day == (LastDate + 1) && Model.schedule[i].group != "filled")
+                        {
+                            <p>@Model.schedule[i].name</p>
+                            <p>@Model.schedule[i].prof</p>
+                            <p>@Model.schedule[i].room</p>
+                            <p>@Model.schedule[i].time.TimeOfDay</p>
+                            <label>Id пари: @Model.schedule[i].id</label>
+                            <p><label>@Model.schedule[i].time.ToString("dd/MM/yyyy")</label></p>
+                            <p> - - - - - - - - - - - - - -</p>
+                            Model.schedule[i].group = "filled";
+                            FoundFirst = true;
+                        }
+                    }
+                    @if(FoundFirst)
+                    {
+                        LastDate++;
+                    }
+                </td>
+                <td>
+                    @for(int i = 0; i < Model.schedule.Count; i++)
+                    {
+                        if(Model.schedule[i].time.DayOfWeek == DayOfWeek.Thursday && Model.schedule[i].time.Day == (LastDate + 1) && Model.schedule[i].group != "filled")
+                        {
+                            <p>@Model.schedule[i].name</p>
+                            <p>@Model.schedule[i].prof</p>
+                            <p>@Model.schedule[i].room</p>
+                            <p>@Model.schedule[i].time.TimeOfDay</p>
+                            <label>Id пари: @Model.schedule[i].id</label>
+                            <p><label>@Model.schedule[i].time.ToString("dd/MM/yyyy")</label></p>
+                            <p> - - - - - - - - - - - - - -</p>
+                            Model.schedule[i].group = "filled";
+                            FoundFirst = true;
+                        }
+                    }
+                    @if(FoundFirst)
+                    {
+                        LastDate++;
+                    }
+                </td>
+                <td>
+                    @for(int i = 0; i < Model.schedule.Count; i++)
+                    {
+                        if(Model.schedule[i].time.DayOfWeek == DayOfWeek.Friday && Model.schedule[i].time.Day == (LastDate + 1) && Model.schedule[i].group != "filled")
+                        {
+                            <p>@Model.schedule[i].name</p>
+                            <p>@Model.schedule[i].prof</p>
+                            <p>@Model.schedule[i].room</p>
+                            <p>@Model.schedule[i].time.TimeOfDay</p>
+                            <label>Id пари: @Model.schedule[i].id</label>
+                            <p><label>@Model.schedule[i].time.ToString("dd/MM/yyyy")</label></p>
+                            <p> - - - - - - - - - - - - - -</p>
+                            Model.schedule[i].group = "filled";
+                            FoundFirst = true;
+                        }
+                    }
+                    @if(FoundFirst)
+                    {
+                        LastDate++;
+                    }
+                </td>
+                <td>
+                    @for(int i = 0; i < Model.schedule.Count; i++)
+                    {
+                        if(Model.schedule[i].time.DayOfWeek == DayOfWeek.Saturday && Model.schedule[i].time.Day == (LastDate + 1) && Model.schedule[i].group != "filled")
+                        {
+                            <p>@Model.schedule[i].name</p>
+                            <p>@Model.schedule[i].prof</p>
+                            <p>@Model.schedule[i].room</p>
+                            <p>@Model.schedule[i].time.TimeOfDay</p>
+                            <label>Id пари: @Model.schedule[i].id</label>
+                            <p><label>@Model.schedule[i].time.ToString("dd/MM/yyyy")</label></p>
+                            <p> - - - - - - - - - - - - - -</p>
+                            Model.schedule[i].group = "filled";
+                            FoundFirst = true;
+                        }
+                    }
+                    @if(FoundFirst)
+                    {
+                        LastDate++;
+                    }
+                </td>
+                <td>
+                    @for(int i = 0; i < Model.schedule.Count; i++)
+                    {
+                        if(Model.schedule[i].time.DayOfWeek == DayOfWeek.Sunday && Model.schedule[i].time.Day == (LastDate + 1) && Model.schedule[i].group != "filled")
+                        {
+                            <p>@Model.schedule[i].name</p>
+                            <p>@Model.schedule[i].prof</p>
+                            <p>@Model.schedule[i].room</p>
+                            <p>@Model.schedule[i].time.TimeOfDay</p>
+                            <label>Id пари: @Model.schedule[i].id</label>
+                            <p><label>@Model.schedule[i].time.ToString("dd/MM/yyyy")</label></p>
+                            <p> - - - - - - - - - - - - - -</p>
+                            Model.schedule[i].group = "filled";
+                            FoundFirst = true;
+                        }
+                    }
+                    @if(FoundFirst)
+                    {
+                        LastDate++;
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>        
+        }
+        
+</div>
+
+
+<div class="panel-body">
+    <input type="button"
+           value="Додати пару"
+           onclick="window.location.href='@Url.Action("AddLesson", "EditSchedule")';" class="btn" />
+    <input type="button"
+           value="Видалити/редагувати пару"
+           onclick="window.location.href='@Url.Action("DeleteOrChange", "EditSchedule")';" class="btn" />
+    <label>Пам'ятайте, що для видалення чи редагування пари вам необхідно знати її Id!</label>
+</div>
+
+
+

@@ -174,6 +174,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddDeleteLessonModel.cs" />
     <Compile Include="Models\ClientId.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DbInitializer.cs" />
@@ -232,7 +233,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -254,8 +254,6 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\EditSchedule\Index.cshtml" />
     <Content Include="Views\ProfRegister\Index.cshtml" />
@@ -265,6 +263,7 @@
     <Content Include="Views\AddSchedule\AddLessonForm.cshtml" />
     <Content Include="Views\Shared\_AddLessonTable.cshtml" />
     <Content Include="Views\Shared\_EditLessonTable.cshtml" />
+    <Content Include="Views\EditSchedule\AddLesson.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

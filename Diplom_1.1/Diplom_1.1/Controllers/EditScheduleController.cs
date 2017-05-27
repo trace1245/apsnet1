@@ -29,20 +29,18 @@ namespace Diplom_1._1.Controllers
             return View(EditScheduleManager.GetSchedule(db, model));
         }
 
-        //[HttpGet]
-        //public ActionResult Index()
-        //{
-        //    SelectList groups = new SelectList(db.Groups, "Id", "Name");
-        //    ViewBag.Groups = groups;
-        //    AddScheduleViewModel model = TempScheduleManager.GetTempInfo(db);
-        //    return View(model);
-        //}
+        [HttpGet]
+        public ActionResult AddLesson()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //public ActionResult Index(AddScheduleViewModel FilledMTempModel)
-        //{
-        //    AddScheduleViewModel model = TempScheduleManager.FixateChange(db, FilledMTempModel);
-        //    return View(model);
-        //}
+        [HttpPost]
+        public ActionResult AddLesson(AddDeleteLessonModel model)
+        {
+            EditScheduleManager.AddDeleteChangeLesson(db, model);
+            return RedirectToAction("Index", "EditSchedule");
+        }
+
     }
 }

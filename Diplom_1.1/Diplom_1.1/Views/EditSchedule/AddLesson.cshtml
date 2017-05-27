@@ -1,0 +1,65 @@
+﻿@model Diplom_1._1.Models.AddDeleteLessonModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Додавання/редагування</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="panel-heading text-center">
+            <h4>Додавання/Редагування/Видалення пари</h4>
+        </div>
+        <div class="text-center">
+            @using(Html.BeginForm())
+            {
+
+                <div>
+                    <div class="form-group">
+                        <label>Id пари</label>
+                        @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
+                        <p>Якщо ви бажаєте видалити пару, заповніть тільки поле "Id пари"</p>
+                        <p>Якщо ви бажаєте додати пару, не заповнюйте поле "Id пари"</p>
+                        <p>Якщо ви бажаєте змінити пару, заповніть всі поля</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Час та день</label>
+                        @Html.TextBoxFor(x => x.Time, "{dd-MM-yyyy HH:mm}", new { @class = "form-control" })
+                        Формат дати: 01-05-2017 16:00
+                    </div>
+                    <div class="form-group">
+                        <label>Назва предмету</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Викладач</label> @*TODO нормальные списки преподов и т.д.*@
+                        @Html.TextBoxFor(x => x.Prof, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Аудиторія</label>
+                        @Html.TextBoxFor(x => x.Room, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Група</label>
+                        @Html.TextBoxFor(x => x.Group, new { @class = "form-control" })
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <input type="submit" value="Підтвердити" class="btn btn-success text-center" />
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

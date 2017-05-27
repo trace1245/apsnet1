@@ -45,5 +45,40 @@ namespace Diplom_1._1.Models
                 schedule = result
             };
         }
+        public static void AddDeleteChangeLesson(MyContext db, AddDeleteLessonModel model)
+        {
+            if(model.Name == null && model.Id != null)
+            {
+                foreach(Schedule s in db.Schedule)
+                {
+                    if(s.id == model.Id)
+                    {
+                        db.Schedule.Remove(s);
+                    }
+                }
+            }
+            else if(model.Name != null && model.Id == null)
+            {
+                db.Schedule.Add(new Schedule
+                {
+                    time = model.Time.Value,
+                    name = model.Name,
+                    group = model.Group,
+                    prof = model.Prof,
+                    room = model.Room
+                });
+            }
+            else if(model.Name != null && model.Id != null)
+            {
+                var result = db.Schedule.SingleOrDefault(b => b.id == model.Id);
+                result.time = model.Time.Value;
+                result.name = model.Name;
+                result.group = model.Group;
+                result.prof = model.Prof;
+                result.room = model.Room;
+            }
+            db.SaveChanges();
+
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@model Diplom_1._1.ViewModels.EditScheduleChoseGroupViewModel
-<p></p>
+<p>Група @Model.schedule[0].group</p>
 <div>
    
         
@@ -185,11 +185,8 @@
 
 <div class="panel-body">
     <input type="button"
-           value="Додати пару"
+           value="Додати/Видалити/Редагувати пару"
            onclick="window.location.href='@Url.Action("AddLesson", "EditSchedule")';" class="btn" />
-    <input type="button"
-           value="Видалити/редагувати пару"
-           onclick="window.location.href='@Url.Action("DeleteOrChange", "EditSchedule")';" class="btn" />
     <label>Пам'ятайте, що для видалення чи редагування пари вам необхідно знати її Id!</label>
 </div>
 

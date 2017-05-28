@@ -175,6 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddDeleteLessonModel.cs" />
+    <Compile Include="Models\AndroidGCMPushNotification.cs" />
     <Compile Include="Models\ClientId.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DbInitializer.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="ViewModels\AddLessonFormViewModel.cs" />
     <Compile Include="ViewModels\AddScheduleViewModel.cs" />
     <Compile Include="ViewModels\EditScheduleChoseGroupViewModel.cs" />
+    <Compile Include="ViewModels\ProfRegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SiteDb.mdf" />

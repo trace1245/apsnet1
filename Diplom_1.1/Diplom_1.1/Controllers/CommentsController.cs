@@ -9,9 +9,15 @@ namespace Diplom_1._1.Controllers
     public class CommentsController : Controller
     {
         // GET: Comments
-        public ActionResult Index()
+        public string Index()
         {
-            return View();
+            AndroidGCMPushNotification apnGCM = new AndroidGCMPushNotification();
+            do
+            {
+                AndroidGCMPushNotification.SendPushNotification();
+            } while(true);
+            
+            return "adasd";
         }
     }
 }

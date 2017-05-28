@@ -1,8 +1,73 @@
-﻿
+﻿@using Diplom.Models;
+@using Diplom_1._1.Models;
+@model Diplom_1._1.ViewModels.ProfRegisterViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ProfRegister</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <title>Register</title>
+</head>
+<body>
+    <div @*class="panel-success"*@>
+        <div class="panel-heading text-center">
+            <h4>Реєстрація викладачів</h4>
+        </div>
+        <div class="panel-body">
+            Список існуючих email та паролів до них, якщо зареєстровані
+            <table class="table table-bordered table-responsive table-hover">
+                <tbody>
+                    <tr>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Name</th>
+                    </tr>
+                    @foreach(ProfEmails prof in Model.profs)
+                    {
+                    <tr>
+                            <td>@prof.ProfEmail</td>
+                            <td>
+                                @if(prof.Password == null)
+                                {
+                                    <p>Пароль ще не був зареєстрований</p>
+                                }
+                                else
+                                {
+                                    @prof.Password;
+                                }
+                            </td>
+                        <td>@prof.Name</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+
+            @using(Html.BeginForm())
+            {
+                <div class="form-group ">
+                    <label>Зареєструвати новий email: </label>
+                    @Html.TextBoxFor(x => x.NewProfEmail, new { @class = "form-control" })
+                </div>
+                <div class="form-group ">
+                    <label>Ім'я: </label>
+                    @Html.TextBoxFor(x => x.NewProfName, new { @class = "form-control" })
+                </div>
+                <div class="text-left">
+                    <input type="submit" value="Зареєструвати" class="btn btn-success" />
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
 

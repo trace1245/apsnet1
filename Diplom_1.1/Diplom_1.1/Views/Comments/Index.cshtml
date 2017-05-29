@@ -1,8 +1,52 @@
-﻿
+﻿@model Diplom_1._1.ViewModels.CommentViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Comment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Comments</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div @*class="panel-success"*@>
+        <div class="panel-heading text-center">
+            <h4>Розсилка повідомлень</h4>
+        </div>
+        <div class="panel-body">
+
+                @if(Model.IsSent == true)
+                {
+                    <label class="label-success">Повідомлення успішно відправлено!</label>
+                }
+
+                @using(Html.BeginForm())
+                {
+                    <div class="form-group">
+                        <label>Повідомлення</label>
+                        @Html.TextAreaFor(x => x.Message, 5, 20, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group ">
+                        <label>Вибір групи: </label>
+                        @Html.DropDownListFor(x => x.ChosenGroup, ViewBag.Groups as SelectList, "" , new { @class = "form-horisontal " })
+                        <p>Для того, щоб відправити повідомлення всім студентам, залиште поле пустим</p>
+                    </div>
+                    <div class="form-group ">
+                        <label>Кому відправити: </label>
+                        @Html.DropDownListFor(x => x.Who, ViewBag.Who as SelectList, new { @class = "form-horisontal " })
+                    </div>
+                    <div class="text-left">
+                        <input type="submit" value="Відправити" class="btn btn-success" />
+                    </div>
+                }
+        </div>
+    </div>
+</body>
+</html>
+
+
 

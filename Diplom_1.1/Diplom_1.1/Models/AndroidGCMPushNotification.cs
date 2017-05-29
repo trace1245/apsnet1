@@ -9,6 +9,9 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Collections.Specialized;
+using Diplom.Models;
+using Diplom_1._1.ViewModels;
+using System.Web.Mvc;
 
 public class AndroidGCMPushNotification
 {
@@ -18,7 +21,7 @@ public class AndroidGCMPushNotification
         // TODO: Add constructor logic here
         //
     }
-    public static void SendPushNotification()
+    private static void SendPushNotification(string deviceId, string message)
     {
 
         try
@@ -28,7 +31,6 @@ public class AndroidGCMPushNotification
 
             string senderId = "1084464698603";
 
-            string deviceId = "fK9YkBd8aAI:APA91bF8qLf9YK8QaLdx-igGS8YA2cbHbffA2KdlfKW52O4nXcTMJ6Un8x7U7_VFbYINO2uGXnUgww41GF8-EcShROfuK-dougL2zlzPqKFcRT7286UVSH4rdr_Ol2OwLbHilsvN_h8i";
 
             WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
             tRequest.Method = "post";
@@ -38,8 +40,8 @@ public class AndroidGCMPushNotification
                 to = deviceId,
                 notification = new
                 {
-                    body = "VitalikLalka",
-                    title = "AlBaami",
+                    body = message,
+                    title = "Notification",
                     sound = "Enabled"
                     
                 }
@@ -69,6 +71,60 @@ public class AndroidGCMPushNotification
         catch(Exception ex)
         {
             string str = ex.Message;
+        }
+    }
+    public static void SendNotification(MyContext db, CommentViewModel model)
+    {
+        string ChosenGroup = "";
+        SelectList ListGroups = new SelectList(db.Groups, "Id", "Name");
+        foreach(SelectListItem i in ListGroups)
+        {
+            if(i.Value == model.ChosenGroup)
+            {
+                ChosenGroup = i.Text;
+            }
+
+        }
+
+        if(model.Who == "1" && ChosenGroup == "") // to all students
+        {
+            foreach(ClientId client in db.Clients)
+            {
+                if(!client.IsProf)
+                {
+                    SendPushNotification(client.PhoneId, model.Message);
+                }
+            }
+        }
+
+        if(model.Who == "1" && ChosenGroup != "") // to some students
+        {
+            foreach(ClientId client in db.Clients)
+            {
+                if(!client.IsProf && client.Group == ChosenGroup)
+                {
+                    SendPushNotification(client.PhoneId, model.Message);
+                }
+            }
+        }
+
+        if(model.Who == "2") // to all lectors
+        {
+            foreach(ClientId client in db.Clients)
+            {
+                if(client.IsProf)
+                {
+                    SendPushNotification(client.PhoneId, model.Message);
+                }
+            }
+        }
+
+        if(model.Who == "3") // to everyone
+        {
+            foreach(ClientId client in db.Clients)
+            {
+                    SendPushNotification(client.PhoneId, model.Message);
+            }
         }
     }
 }

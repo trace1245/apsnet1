@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Diplom.Models;
 using System.Web.Mvc;
+using Diplom_1._1.ViewModels;
+using Diplom_1._1.Models;
+using Diplom.Models;
 
 namespace Diplom.Controllers
 {
@@ -12,16 +14,9 @@ namespace Diplom.Controllers
         MyContext db = new MyContext();
 
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(string returnUrl)
         {
-            //db.Clients.Add(new ClientId {Group = "KN-14", PhoneId = "qwerty1234", IsProf = false });
-            //db.SaveChanges();
-
-            // получаем из бд все объекты 
-            IEnumerable<ClientId> clients = db.Clients;
-            // передаем все полученный объекты в ViewBag
-            ViewBag.Clients = clients;
-            // возвращаем представление
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -70,6 +65,15 @@ namespace Diplom.Controllers
                 return Json(PostResponse.GetGRL(db), JsonRequestBehavior.AllowGet);
             }
             return Json(new { State = "false", Info = "wrong arguments" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginViewModel model)
+        {
+            if(model.Login == "admin" && model.Password == "123" )
+            return RedirectToAction("Index", "AddSchedule");
+            else
+                return RedirectToAction("Index", "Home");
         }
     }
 }
